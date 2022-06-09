@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react'
+import React, {useCallback, useRef, useState, useMemo} from 'react'
 import {useDropzone} from 'react-dropzone'
 import {db, storage} from '../../firebase'
 import {addDoc, arrayUnion, collection, serverTimestamp, updateDoc, doc} from 'firebase/firestore'
@@ -7,6 +7,34 @@ import {ref, getDownloadURL, uploadBytes} from "@firebase/storage";
 const Dropzone = () => {
     const [selectedImages, setSelectedImages] = useState([])
     const captionRef = useRef(null)
+    const baseStyle = {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+        borderWidth: 2,
+        borderRadius: 2,
+        borderColor: '#eeeeee',
+        borderStyle: 'dashed',
+        backgroundColor: '#fafafa',
+        color: '#bdbdbd',
+        outline: 'none',
+        transition: 'border .24s ease-in-out'
+      };
+      
+      const focusedStyle = {
+        borderColor: '#2196f3'
+      };
+      
+      const acceptStyle = {
+        borderColor: '#00e676'
+      };
+      
+      const rejectStyle = {
+        borderColor: '#ff1744'
+      };
+      
     const uploadPost = async()=>{
         const docRef = await addDoc(collection(db,"posts"),{
             caption:captionRef.current.value,
@@ -33,7 +61,19 @@ const Dropzone = () => {
             })
             ))
       }, [])
-      const {getRootProps, getInputProps} = useDropzone({onDrop})
+      const {getRootProps, getInputProps, isFocused,
+        isDragAccept,
+        isDragReject} = useDropzone({onDrop, accept: 'image/*'})
+        const style = useMemo(() => ({
+            ...baseStyle,
+            ...(isFocused ? focusedStyle : {}),
+            ...(isDragAccept ? acceptStyle : {}),
+            ...(isDragReject ? rejectStyle : {})
+          }), [
+            isFocused,
+            isDragAccept,
+            isDragReject
+          ]);
       const selected_images = selectedImages?.map(file=>(
           <div>
               <img src={file.preview} style={{width:"200px"}} alt="" />
@@ -41,7 +81,7 @@ const Dropzone = () => {
       ))
       return (
           <div>
-        <div {...getRootProps()}>
+        <div {...getRootProps({style})}>
           <input {...getInputProps()} />
               <p>Drop the files here ...</p>           
         </div>
