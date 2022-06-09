@@ -1,9 +1,12 @@
 import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
+import {db, storage} from '../../firebase'
 
 
 const Dropzone = () => {
     const [selectedImages, setSelectedImages] = useState([])
+    console.log('db', db)
+    console.log('storage', storage)
     const onDrop = useCallback(acceptedFiles => {
         setSelectedImages(acceptedFiles.map(file=>
             Object.assign(file,{
