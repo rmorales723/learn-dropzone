@@ -1,8 +1,8 @@
 import React, {useCallback, useRef, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import {db, storage} from '../../firebase'
-import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
-
+import {addDoc, arrayUnion, collection, serverTimestamp, updateDoc, doc} from 'firebase/firestore'
+import {ref, getDownloadURL, uploadBytes} from "@firebase/storage";
 
 const Dropzone = () => {
     const [selectedImages, setSelectedImages] = useState([])
@@ -12,6 +12,19 @@ const Dropzone = () => {
             caption:captionRef.current.value,
             timestamp:serverTimestamp()
         })
+        await Promise.all(
+            selectedImages.map(image=>{
+                const imageRef = ref(storage, `posts/${docRef.id}/${image.path}`);
+                uploadBytes(imageRef, image,"data_url").then(async()=>{
+                    const downloadURL = await getDownloadURL(imageRef)
+                    await updateDoc(doc(db,"posts",docRef.id),{
+                        images:arrayUnion(downloadURL)
+                    })
+                })
+            })
+        )
+        captionRef.current.value=''
+        setSelectedImages([])
     }
     const onDrop = useCallback(acceptedFiles => {
         setSelectedImages(acceptedFiles.map(file=>
