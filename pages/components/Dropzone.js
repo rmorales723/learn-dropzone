@@ -85,8 +85,12 @@ const Dropzone = () => {
           <input {...getInputProps()} />
               <p>Drop the files here ...</p>           
         </div>
-        <input ref={captionRef} type= "text" placeholder='Enter a caption' />
-        <button onClick={uploadPost}>post</button>
+        <input 
+        className='border rounded focus:ring-0 w-full text-xs p-3 my-4'
+        ref={captionRef} type= "text" placeholder='Enter a caption' />
+        <button 
+            className='hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 rounded'
+        onClick={uploadPost}>post</button>
         {selected_images}
         </div>
       )
