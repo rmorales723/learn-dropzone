@@ -22,10 +22,10 @@ Implementing 'TimeStamp' to log the time the post was created.
 The 'DropZone' is located at the left of the screen. Where the user drags the file, and drops. Adds a caption, and presses 'post' where it`s stored to the database 'FireBase' and rendered to the browser in the center of the screen..
 
 
-![Screen Shot 2022-06-09 at 4 28 52 PM](https://user-images.githubusercontent.com/72527380/172939745-250b50f0-2921-4286-aeab-62d8a1741e3f.png)
+![Screen Shot 2022-06-09 at 5 01 56 PM](https://user-images.githubusercontent.com/72527380/172944069-4358077d-37f6-4090-a058-3390d94f05d0.png)
 
 
 Implementing 'Tailwind' for the css and styling.
 
 
-![Screen Shot 2022-06-09 at 4 51 04 PM](https://user-images.githubusercontent.com/72527380/172942201-096a84d0-0fcc-4b8a-9571-af43f0e8bcfb.png)
+![Screen Shot 2022-06-09 at 5 02 38 PM](https://user-images.githubusercontent.com/72527380/172943991-80d0713c-0dc5-4907-9cdd-d5edbf777aa7.png)
