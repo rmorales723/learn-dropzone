@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {db} from "../../firebase";
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import Image from 'next/image';
+import moment from 'moment';
 
 const Posts = () => {
   const  [posts, setPosts] = useState([])
@@ -35,6 +36,7 @@ const Posts = () => {
         <div className="flex space-x-3">
           {postImages(post)}
           </div>
+          <p className="mt-5 text-right text-gray-400">{moment(post.timestamp).fromNow()}</p>
       </div>)
       }
       </div>
