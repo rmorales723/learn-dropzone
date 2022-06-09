@@ -26,3 +26,4 @@ Using 'FireBase' for the database storage.
 
 Executing 'Tailwind' for the css and styling.
 
+![Screen Shot 2022-06-09 at 4 51 04 PM](https://user-images.githubusercontent.com/72527380/172942201-096a84d0-0fcc-4b8a-9571-af43f0e8bcfb.png)
