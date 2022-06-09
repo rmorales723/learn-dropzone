@@ -19,11 +19,13 @@ Implementing 'TimeStamp' to log the time the post was created.
 
 ![Screen Shot 2022-06-09 at 4 26 36 PM](https://user-images.githubusercontent.com/72527380/172939708-a008fa52-df48-4233-8861-e3468bbc3d5d.png)
 
-Using 'FireBase' for the database storage.
+The 'DropZone' is located at the left of the screen. Where the user drags the file, and drops. Adds a caption, and presses 'post' where it`s stored to the database 'FireBase' and rendered to the browser in the center of the screen..
 
 
 ![Screen Shot 2022-06-09 at 4 28 52 PM](https://user-images.githubusercontent.com/72527380/172939745-250b50f0-2921-4286-aeab-62d8a1741e3f.png)
 
-Executing 'Tailwind' for the css and styling.
+
+Implementing 'Tailwind' for the css and styling.
+
 
 ![Screen Shot 2022-06-09 at 4 51 04 PM](https://user-images.githubusercontent.com/72527380/172942201-096a84d0-0fcc-4b8a-9571-af43f0e8bcfb.png)
