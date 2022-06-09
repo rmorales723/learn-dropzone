@@ -1,12 +1,18 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import {db, storage} from '../../firebase'
+import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 
 
 const Dropzone = () => {
     const [selectedImages, setSelectedImages] = useState([])
-    console.log('db', db)
-    console.log('storage', storage)
+    const captionRef = useRef(null)
+    const uploadPost = async()=>{
+        const docRef = await addDoc(collection(db,"posts"),{
+            caption:captionRef.current.value,
+            timestamp:serverTimestamp()
+        })
+    }
     const onDrop = useCallback(acceptedFiles => {
         setSelectedImages(acceptedFiles.map(file=>
             Object.assign(file,{
@@ -26,6 +32,8 @@ const Dropzone = () => {
           <input {...getInputProps()} />
               <p>Drop the files here ...</p>           
         </div>
+        <input ref={captionRef} type= "text" placeholder='Enter a caption' />
+        <button onClick={uploadPost}>post</button>
         {selected_images}
         </div>
       )
